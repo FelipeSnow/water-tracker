@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { BottomMenu } from './src/bottom-menu';
+import { HomePage } from './src/home';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<'WATER' | 'HISTORY' | 'MENU'>('WATER')
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <View style={{ height: '90%' }}>
+        <HomePage />
+      </View>
+      <BottomMenu
+        currentPage={currentPage}
+        navToPage={(page) => setCurrentPage(page)}/>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
